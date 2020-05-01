@@ -8,7 +8,7 @@ RUN apt-get -y update \
 
 RUN npm install -g @vue/cli --verbose
 
-WORKDIR /usr/app/vue-cli-test
+WORKDIR /usr/app/abecedaire
 
 RUN apt-get autoremove -y \
     && apt-get autoclean -y \
