@@ -69,9 +69,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-  .charanim {
-    fill-opacity: 0;
-  }
   .charcard {
     height: auto;
     width: 100%;
@@ -101,13 +98,6 @@ export default {
     font-size:26.6px;
     fill:#231f20;
     text-anchor: middle;
-  }
-  .charcard_manuscript{
-    stroke:#000000;
-    stroke-width:1px;
-    fill:none;
-    stroke-linecap:round;
-    stroke-linejoin:round;
   }
   .charcard_print{
     font-family:Nunito-Regular, Nunito;
