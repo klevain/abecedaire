@@ -3,7 +3,6 @@
     <CharsGrid/>
   </div>
 </template>
-
 <script>
 import CharsGrid from '@/components/CharsGrid.vue';
 

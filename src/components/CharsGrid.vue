@@ -4,7 +4,7 @@
     <router-link
       v-for="char in charlist"
       v-bind:key="char.letter"
-      v-bind:to="{name: 'lettre', params: { char: char.letter }}"
+      v-bind:to="{name: 'Lettre', params: { char: char.letter }}"
       v-shuffle="2"
       class="chargrid_cell"
     >

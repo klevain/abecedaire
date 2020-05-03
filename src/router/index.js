@@ -20,7 +20,7 @@ const routes = [
   },
   {
     path: '/lettre/:char',
-    name: 'lettre',
+    name: 'Lettre',
     component: () => import(/* webpackChunkName: "about" */ '../views/SingleChar.vue'),
   },
 ];

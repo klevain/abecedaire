@@ -4,7 +4,6 @@
     <CharCard v-bind="$store.state.currentChar" />
   </div>
 </template>
-
 <script>
 import CharCard from '@/components/CharCard.vue';
 // import charssetjson from '@/assets/chars-set.json';
