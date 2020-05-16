@@ -7,6 +7,7 @@ RUN apt-get -y update \
 	&& apt-get install -y git
 
 RUN npm install -g @vue/cli --verbose
+RUN npm install -g cli-real-favicon
 
 WORKDIR /usr/app/abecedaire
 

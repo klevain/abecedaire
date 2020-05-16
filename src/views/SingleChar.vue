@@ -14,7 +14,8 @@ export default {
     CharCard,
   },
   created() {
-    const currentChar = this.$store.state.charsSet[this.$route.params.char];
+    const letterFilter = (_char) => _char.letter === this.$route.params.char;
+    const currentChar = this.$store.state.charsSet.find(letterFilter);
     this.$store.commit('setCurrentChar', currentChar);
   },
 };

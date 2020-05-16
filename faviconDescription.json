@@ -1,0 +1,65 @@
+
+
+{
+	"masterPicture": "src/assets/icon.svg",
+	"iconsPath": "/",
+	"design": {
+		"ios": {
+			"pictureAspect": "noChange",
+			"assets": {
+				"ios6AndPriorIcons": false,
+				"ios7AndLaterIcons": false,
+				"precomposedIcons": false,
+				"declareOnlyDefaultIcon": true
+			}
+		},
+		"desktopBrowser": {
+			"design": "raw"
+		},
+		"windows": {
+			"masterPicture": {
+				"type": "inline",
+				"content": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA5NiI+PGRlZnM+PHN0eWxlPi5jbHMtMSwuY2xzLTIsLmNscy0ze2ZpbGw6bm9uZTtzdHJva2UtbGluZWNhcDpyb3VuZDt9LmNscy0xe3N0cm9rZTojNmMwMGJkO30uY2xzLTEsLmNscy0ye3N0cm9rZS1taXRlcmxpbWl0OjEwO30uY2xzLTEsLmNscy0ze3N0cm9rZS13aWR0aDoycHg7fS5jbHMtMntzdHJva2U6IzhmYzZiZDt9LmNscy0ze3N0cm9rZTojMDAwO3N0cm9rZS1saW5lam9pbjpyb3VuZDt9PC9zdHlsZT48L2RlZnM+PGcgaWQ9Imljb24iPjxsaW5lIGNsYXNzPSJjbHMtMSIgeDE9IjgwIiB5MT0iNjQiIHgyPSIxNiIgeTI9IjY0Ii8+PGxpbmUgY2xhc3M9ImNscy0yIiB4MT0iODAiIHkxPSI4MCIgeDI9IjE2IiB5Mj0iODAiLz48bGluZSBjbGFzcz0iY2xzLTIiIHgxPSI4MCIgeTE9IjQ4IiB4Mj0iMTYiIHkyPSI0OCIvPjxsaW5lIGNsYXNzPSJjbHMtMiIgeDE9IjgwIiB5MT0iMzIiIHgyPSIxNiIgeTI9IjMyIi8+PGxpbmUgY2xhc3M9ImNscy0yIiB4MT0iODAiIHkxPSIxNiIgeDI9IjE2IiB5Mj0iMTYiLz48ZyBpZD0ibWluIj48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0zNi4xNjg1LDUzLjE2MzFjLTEuOTk1My01LjU3LTkuMzYwOS01LjIwODItMTEuOTM4MS0xLjU1YTguNTk1LDguNTk1LDAsMCwwLS4yNDk0LDEwLjA1OTRjMS43NDU4LDIuMjQ0Nyw4LjU2MjksMi4yNDQ3LDEwLjcyNDQtLjA4MzFzMS4zMy0xMC4zOTE5LDEuMjQ3MS0xMi43MmMwLDUuMzIwNiwxLjQzMjUsMTQuMTc4MSw0Ljk4MSwxNC4xNzgxLDguMTQ4NywwLDE5LjcwMzEtMzAuOTI2MywxNi45Ni0zOS43Mzg3cy0xMi44ODYtNy40ODIxLTEzLjEzNTQsNC40MDYyLjEyODUsMjEuOTU1Mi4yNDk0LDI3LjI3NzFjLjE2NjMsNy4zMTU5LDcuNDgyMiwxMi4yMjA4LDEyLjYzNjYsNS4yMzc1cy4zMzI1LTExLjgwNTItMS45MTIxLTkuNzI2OC44MzEzLDguNTYyOSw3Ljg5NzgsMy43NDEiLz48L2c+PHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNzIuNTY2Nyw1MC44NDhjLTEuNjYyNy00LjQwNjItNi45LTIuMzI3OC04LjU2MjksMi4zMjc4cy43MTU0LDEwLjMwODcsNy40ODIxLDEwLjMwODdjNC4zMjMxLDAsNi4yMzUyLTIuODI2Niw4LjIzLTQuNzM4NyIvPjxnIGlkPSJtaW4tMiIgZGF0YS1uYW1lPSJtaW4iPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTE1Ljg4MzUsNjMuODg3NWEyMy43MzY4LDIzLjczNjgsMCwwLDAsNi42NTA4LTguMDY0MSIvPjwvZz48L2c+PC9zdmc+"
+			},
+			"pictureAspect": "noChange",
+			"backgroundColor": "#faebd7",
+			"onConflict": "override",
+			"assets": {
+				"windows80Ie10Tile": false,
+				"windows10Ie11EdgeTiles": {
+					"small": false,
+					"medium": true,
+					"big": false,
+					"rectangle": false
+				}
+			}
+		},
+		"androidChrome": {
+			"pictureAspect": "noChange",
+			"themeColor": "#ffffff",
+			"manifest": {
+				"display": "standalone",
+				"orientation": "notSet",
+				"onConflict": "override",
+				"declared": true
+			},
+			"assets": {
+				"legacyIcon": false,
+				"lowResolutionIcons": false
+			}
+		},
+		"safariPinnedTab": {
+			"pictureAspect": "blackAndWhite",
+			"threshold": 46.875,
+			"themeColor": "#5bbad5"
+		}
+	},
+	"settings": {
+		"scalingAlgorithm": "Mitchell",
+		"errorOnImageTooSmall": false,
+		"readmeFile": false,
+		"htmlCodeFile": false,
+		"usePathAsIs": false
+	}
+}
+

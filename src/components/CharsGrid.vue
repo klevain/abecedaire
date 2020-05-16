@@ -1,6 +1,5 @@
 <template>
-  <div class="chargrid">
-
+  <transition-group name="flip-list" tag="div" class="chargrid">
     <router-link
       v-for="char in charlist"
       v-bind:key="char.letter"
@@ -8,9 +7,9 @@
       v-shuffle="2"
       class="chargrid_cell"
     >
-      <CharCard v-bind="char" />
+      <CharCard v-bind="char"  />
     </router-link>
-  </div>
+  </transition-group>
 </template>
 
 <script>
@@ -24,7 +23,7 @@ export default {
   },
   computed: {
     charlist() {
-      return this.$store.state.charsSet;
+      return this.$store.getters.shuffledSet;
     },
   },
   directives: {
@@ -41,6 +40,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.flip-list-move {
+  transition: transform 1s;
+}
   .chargrid {
     display: flex;
     flex-direction: row;
@@ -52,8 +54,8 @@ export default {
     margin: 1rem;
     transition: transform 150ms ease-in;
     width: 15.2rem;
-    &:hover{
-      transform: rotate(0deg) !important;
-    }
+    // &:hover{
+    //   transform: rotate(0deg) !important;
+    // }
   }
 </style>

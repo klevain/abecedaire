@@ -4,7 +4,13 @@
       <router-link to="/">Les Lettres</router-link> |
       <router-link to="/about">À propos</router-link>
     </div>
-    <router-view/>
+    <transition
+      name="router-fade"
+      mode="out-in"
+      appear
+    >
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -30,5 +36,12 @@
       color: #42b983;
     }
   }
+}
+
+.router-fade-enter-active, .router-fade-leave-active {
+  transition: opacity .5s;
+}
+.router-fade-enter, .router-fade-leave-to {
+  opacity: 0;
 }
 </style>
