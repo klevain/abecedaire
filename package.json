@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint --fix"
+    "build": "npm run favicon && npm run htmlfavicon && vue-cli-service build",
+    "lint": "vue-cli-service lint --fix",
+    "favicon": "real-favicon generate faviconDescription.json faviconData.json public",
+    "htmlfavicon": "real-favicon inject faviconData.json public index.html"
   },
   "dependencies": {
     "animejs": "^3.2.0",

@@ -19,3 +19,17 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Favicon
+public/android-chrome-192x192.png
+public/android-chrome-192x192.png
+public/android-chrome-192x192.png
+public/android-chrome-512x512.png
+public/apple-touch-icon.png
+public/favicon-16x16.png
+public/favicon-32x32.png
+public/mstile-70x70.png
+public/mstile-144x144.png
+public/mstile-150x150.png
+public/mstile-310x150.png
+public/mstile-310x310.png
