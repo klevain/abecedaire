@@ -1,6 +1,6 @@
 <template>
 <svg
-    class="charcard"
+    class="w-100 h-auto rounded-lg shadow-sm bg-light border"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 128 88"
 >
@@ -70,11 +70,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
   .charcard {
-    height: auto;
-    width: 100%;
     background: antiquewhite;
-    border-radius: 1.1rem;
-    box-shadow: 1rem 1rem 1rem -1rem rgba(0,0,0,0.33);
   }
   .charcard_baselines {
     fill:none;

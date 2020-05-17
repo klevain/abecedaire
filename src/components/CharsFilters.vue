@@ -105,9 +105,6 @@ export default {
 
 <style lang="scss">
  .charsfilters {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 20rem;
+  background: red;
  }
 </style>

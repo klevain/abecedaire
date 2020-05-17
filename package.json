@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "animejs": "^3.2.0",
+    "bootstrap": "^4.5.0",
+    "bootstrap-vue": "^2.14.0",
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
     "vue-animejs": "^2.1.1",

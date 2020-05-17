@@ -1,14 +1,17 @@
 <template>
-  <transition-group name="flip-list" tag="div" class="chargrid">
-    <router-link
-      v-for="char in charlist"
-      v-bind:key="char.letter"
-      v-bind:to="{name: 'Lettre', params: { char: char.letter }}"
-      v-shuffle="2"
-      class="chargrid_cell"
+  <transition-group name="flip-list" tag="div" class="row row-cols-3">
+    <b-col
+        v-for="char in charlist"
+        v-bind:key="char.letter"
     >
-      <CharCard v-bind="char"  />
-    </router-link>
+      <router-link
+        v-bind:to="{name: 'Lettre', params: { char: char.letter }}"
+        v-shuffle="2"
+        class="d-block m-3"
+      >
+        <CharCard v-bind="char"  />
+      </router-link>
+    </b-col>
   </transition-group>
 </template>
 
@@ -23,7 +26,7 @@ export default {
   },
   computed: {
     charlist() {
-      return this.$store.getters.shuffledSet;
+      return this.$store.getters.selectedSet;
     },
   },
   directives: {
@@ -41,19 +44,20 @@ export default {
 
 <style scoped lang="scss">
 .flip-list-move {
-  transition: transform 1s;
+  // transition: transform 1s;
 }
   .chargrid {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    // align-items: flex-start;
   }
   .chargrid_cell {
-    margin: 1rem;
-    transition: transform 150ms ease-in;
-    width: 15.2rem;
+    // display: block;
+    // margin: 1rem;
+    // transition: transform 150ms ease-in;
+    // width: 15.2rem;
     // &:hover{
     //   transform: rotate(0deg) !important;
     // }
