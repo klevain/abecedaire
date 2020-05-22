@@ -44,22 +44,6 @@ export default {
 
 <style scoped lang="scss">
 .flip-list-move {
-  // transition: transform 1s;
+  transition: transform 1s;
 }
-  .chargrid {
-    // display: flex;
-    // flex-direction: row;
-    // flex-wrap: wrap;
-    // justify-content: center;
-    // align-items: flex-start;
-  }
-  .chargrid_cell {
-    // display: block;
-    // margin: 1rem;
-    // transition: transform 150ms ease-in;
-    // width: 15.2rem;
-    // &:hover{
-    //   transform: rotate(0deg) !important;
-    // }
-  }
 </style>

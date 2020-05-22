@@ -1,62 +1,34 @@
 <template>
   <div class="charsfilters">
-    <div>
-      <label for="reset">
-        Réinitialiser les filtres
-      </label>
-      <button
+    <div class="px-3 mt-4 mb-1 border-bottom">
+      <b-form-group>
+        <b-form-checkbox-group
+          id="checkbox-group-1"
+          v-model="checkboxModel"
+          v-bind:options="checkboxOptions"
+          name="flavour-1"
+        ></b-form-checkbox-group>
+      </b-form-group>
+    </div>
+    <div class="px-3 mt-4 mb-1">
+      <b-button
         name="reset"
         id="reset"
-        class="favorite styled"
-        type="button"
+        block
+        variant="primary"
         @click="resetFilters"
       >
-        Selectionner tout
-      </button>
-      <button
+        Tout selectionner
+      </b-button>
+      <b-button
         name="reset"
         id="reset"
-        class="favorite styled"
-        type="button"
+        block
+        variant="primary"
         @click="emptySelection"
       >
         Ne rien selectionner
-      </button>
-    </div>
-    <div>
-      <label for="sample">
-        Choisir par ensembles de lettres
-      </label>
-      <input
-        type="text"
-        name="sample"
-        id="sample"
-        v-model="sample"
-        @input="sampleUpdate"
-      >
-      <div>{{ sampleHash }}</div>
-    </div>
-    <div>
-      <label for="letter">
-        Choisir par lettres
-      </label>
-      <div
-        name="letter"
-        id="letter"
-        v-for="char in charsSet"
-        v-bind:key="char.letter"
-        class="chargrid_cell"
-      >
-        <label v-bind:for="char.letter">
-          {{ char.letter }}
-        </label>
-        <input
-          type="checkbox"
-          v-bind:id="char.letter"
-          v-model="char.selected"
-          @input="toggleCharSelection"
-        >
-      </div>
+      </b-button>
     </div>
   </div>
 </template>
@@ -74,6 +46,26 @@ export default {
     charsSet() {
       return this.$store.state.charsSet;
     },
+    checkboxOptions() {
+      const options = this.$store.state.charsSet.map((_char) => ({
+        text: _char.letter,
+        value: _char.letter,
+      }));
+      console.log('checkboxOptions', options);
+      return options;
+    },
+    checkboxModel: {
+      get() {
+        const model = this.$store.getters.selectedSet.map((_char) => _char.letter);
+        console.log('get checkboxModel', model);
+        return model;
+      },
+      set(sample) {
+        console.log('set checkboxModel', sample);
+        this.$store.commit('selectSample', sample);
+        // sampleUpdate(value);
+      },
+    },
     sampleHash() {
       const selectedLettersMap = this.$store.getters.selectedSet.map((_char) => _char.letter);
       return selectedLettersMap.join(', ');
@@ -83,28 +75,46 @@ export default {
 
     sampleUpdate(event) {
       // Send a set of letters as sample to filter
-      console.log('sampleUpdate', event);
-      this.$store.commit('applySample', event.target.value.split(''));
+      console.log('sampleUpdate', event.target.value.split(''));
+      this.$store.commit('selectSample', event.target.value.split(''));
     },
-    toggleCharSelection(event) {
+    toggleCharSelection(char) {
       // Send a letter id to toggle select attr
-      this.$store.commit('toggleCharSelection', event.target.id);
+      this.$store.commit('toggleCharSelection', char);
     },
     resetFilters() {
       // Reset Charslist
-      this.$store.commit('resetCharsSelection');
+      this.$store.commit('toggleCharsSet', true);
     },
     emptySelection() {
       // Reset Charslist
-      this.$store.commit('emptyCharsSelection');
+      this.$store.commit('toggleCharsSet', false);
     },
   },
 };
 </script>
 
-
-<style lang="scss">
- .charsfilters {
-  background: red;
- }
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" >
+ #checkbox-group-1 {
+    .custom-control {
+      padding-left: 0;
+      margin-right: 0;
+      width: 33%;
+      float: left;
+      height: 3.5rem;
+      text-align: center;
+      display: block;
+    }
+    .custom-control-label {
+      font-size: 120%;
+      display: block;
+      height: 100%;
+      &::before,
+      &::after {
+        top: 2rem;
+        left: calc(50% - 0.5rem);
+      }
+    }
+  }
 </style>
