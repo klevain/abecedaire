@@ -13,12 +13,13 @@
       </router-link>
       <b-modal
         :id="'bv-modal-letter-' + char.letter"
+        v-on:hidden="unsetCurrentChar(char.letter)"
         v-model="char.current"
         size="lg"
         hide-footer
       >
         <template v-slot:modal-title>
-          La lettre {{char.letter}}
+          La lettre “{{char.letter.toUpperCase()}}”
         </template>
         <CharCard v-bind="char"  />
       </b-modal>
@@ -51,6 +52,11 @@ export default {
         const element = el;
         element.style.transform = `rotate(${randrot * randamp}deg)`;
       },
+    },
+  },
+  methods: {
+    unsetCurrentChar(charID) {
+      console.log('CharsGrid.unsetCurrentChar', charID);
     },
   },
 };

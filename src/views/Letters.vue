@@ -31,31 +31,15 @@ export default {
       let currentChar = {};
       const routeFilter = (_char) => _char.letter === charID;
       currentChar = this.$store.state.charsSet.find(routeFilter);
-      console.log('letters.commitCurrent', currentChar);
       this.$store.commit('setCurrentChar', currentChar);
     },
   },
   mounted() {
-    console.log('letters.mounted');
     this.commitCurrent(this.$route.params.char);
   },
-  // updated() {
-  //   console.log('letters.updated');
-  //   this.commitCurrent();
-  // },
   beforeRouteUpdate(to, from, next) {
-    console.log('letters.beforeRouteUpdate');
     this.commitCurrent(to.params.char);
     next();
-  },
-  beforeRouteEnter(to, from, next) {
-    console.log('letters.beforeRouteEnter');
-    next();
-  },
-  watch: {
-    $route(to) {
-      console.log('letters.watch.$route', to.params.char);
-    },
   },
 };
 </script>

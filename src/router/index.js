@@ -24,10 +24,6 @@ const routes = [
     path: '/lettres/:char',
     name: 'Lettre',
     component: () => import(/* webpackChunkName: "letters" */ '../views/Letters.vue'),
-    beforeEnter: (to, from, next) => {
-      console.log('router(/lettres/:char).beforeEnter');
-      next();
-    },
   },
 ];
 

@@ -51,11 +51,24 @@ export default {
     },
     dispatchClick(event) {
       if (event.target.classList.contains('charanim_wheelarea--uppercase')) {
-        this.$refs.majPaths.playTL();
+        this.$refs.majPaths.restartTL();
       }
       if (event.target.classList.contains('charanim_wheelarea--lowercase')) {
-        this.$refs.minPaths.playTL();
+        this.$refs.minPaths.restartTL();
       }
+    },
+    playBoth() {
+      this.$refs.majPaths.playTL();
+      this.$refs.minPaths.playTL();
+    },
+    pauseBoth() {
+      this.$refs.majPaths.pauseTL();
+      this.$refs.minPaths.pauseTL();
+    },
+    seekBoth(percent) {
+      console.log('CharManAnim.seekBoth', percent);
+      this.$refs.majPaths.seekTL(percent);
+      this.$refs.minPaths.seekTL(percent);
     },
   },
 };

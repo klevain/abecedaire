@@ -51,8 +51,17 @@ export default {
         duration: calculatedDuration,
       }, '+=500');
     },
-    playTL() {
+    restartTL() {
       this.timeline.restart();
+    },
+    playTL() {
+      this.timeline.play();
+    },
+    pauseTL() {
+      this.timeline.pause();
+    },
+    seekTL(percent) {
+      this.timeline.seek((percent / 100) * this.timeline.duration);
     },
     controlTL(deltaY) {
       this.cursor = Math.min(Math.max(this.cursor + deltaY / 24, 0), 100);

@@ -41,6 +41,7 @@
                 :letter="letter"
                 :majPaths="majPaths"
                 :minPaths="minPaths"
+                ref="charManAnim"
               />
               <!-- eslint-disable -->
               <!-- just to remember -->
@@ -52,13 +53,12 @@
     <b-row v-if="!isInGrid">
       <b-col>
         <div>
-          <div class="input-group input-group-lg mb-3">
+          <div class="input-group input-group-lg mt-3">
             <div class="input-group-prepend">
-              <b-button>
-                <b-icon-play></b-icon-play>
-                <!-- <b-icon-pause></b-icon-pause> -->
+              <b-button variant="primary" v-on:click="togglePath()">
+                <b-icon-pause v-if="isPlaying"></b-icon-pause>
+                <b-icon-play v-else></b-icon-play>
               </b-button>
-              <button class="btn btn-outline-secondary" type="button">Button</button>
             </div>
             <b-form-input
               id="range-1"
@@ -66,6 +66,8 @@
               type="range"
               min="0"
               max="100"
+              size="lg"
+              v-on:input="seekPath(controlTL)"
             ></b-form-input>
           </div>
         </div>
@@ -83,6 +85,7 @@ export default {
   data() {
     return {
       controlTL: 0.0,
+      isPlaying: false,
     };
   },
   components: {
@@ -98,6 +101,24 @@ export default {
     increment() {
       this.$store.commit('increment');
       console.log(this.$store.state.count);
+    },
+    playPath() {
+      this.$refs.charManAnim.playBoth();
+    },
+    pausePath() {
+      this.$refs.charManAnim.pauseBoth();
+    },
+    togglePath() {
+      if (this.isPlaying) {
+        this.$refs.charManAnim.pauseBoth();
+      } else {
+        this.$refs.charManAnim.playBoth();
+      }
+      this.isPlaying = !this.isPlaying;
+    },
+    seekPath(percent) {
+      console.log('CharCard.seekPath', percent);
+      this.$refs.charManAnim.seekBoth(percent);
     },
   },
 };
