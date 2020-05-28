@@ -1,7 +1,7 @@
 <template>
   <div class="char">
-    <h1>La lettre {{$route.params.char}}</h1>
-    <CharCard v-bind="$store.state.currentChar" />
+    <h1>La lettre {{$store.getters.currentChar}}</h1>
+    <CharCard v-bind="$store.getters.currentChar" />
   </div>
 </template>
 <script>

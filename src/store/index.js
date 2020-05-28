@@ -19,11 +19,20 @@ export default new Vuex.Store({
         .sort((a, b) => a.sort - b.sort)
         .map((a) => a.value);
     },
+    currentChar(state) {
+      return state.charsSet.find((_char) => _char.current);
+    },
   },
   mutations: {
-    setCurrentChar(state, letter) {
-      state.currentChar = letter;
-      console.log('setCurrentChar', letter, state.currentChar);
+    setCurrentChar(state, char) {
+      const currentedCharsSet = state.charsSet.map((_char) => {
+        const setchar = _char;
+        setchar.current = setchar.letter === char.letter;
+        return setchar;
+      });
+      state.currentChar = char;
+      state.charsSet = currentedCharsSet;
+      console.log('store.setCurrentChar', state.currentChar.letter);
     },
     // sample est un tableau genre ['a','f','b'] contenant au moins une lettre
     selectSample(state, sample) {
@@ -32,16 +41,15 @@ export default new Vuex.Store({
         state.charsSet.forEach((setChar) => {
           const currentChar = setChar;
           const finding = options.sample.some((sampleChar) => currentChar.letter === sampleChar);
-          console.log('selectSample.finding', finding);
           currentChar.selected = finding;
         });
       }
-      console.log('selectSample', options, state.charsSet);
+      console.log('store.selectSample', options.sample);
     },
     toggleCharSelection(state, upChar) {
       const currentChar = state.charsSet.find((char) => char.letter === upChar);
       currentChar.selected = !currentChar.selected;
-      console.log('toggleCharSelection', upChar);
+      console.log('store.toggleCharSelection', upChar);
     },
     toggleCharsSet(state, forced) {
       state.charsSet.forEach((char) => {
@@ -49,7 +57,7 @@ export default new Vuex.Store({
         const toggleDir = (forced === undefined) ? !charToToggle.selected : forced;
         charToToggle.selected = toggleDir;
       });
-      console.log('resetCharsSelection', state.charsSet);
+      console.log('store.toggleCharsSet', forced);
     },
   },
 });

@@ -1,18 +1,29 @@
 <template>
-  <transition-group name="flip-list" tag="div" class="row row-cols-3">
+  <div class="row row-cols-3">
     <b-col
         v-for="char in charlist"
-        v-bind:key="char.letter"
+        :key="char.letter"
     >
       <router-link
-        v-bind:to="{name: 'Lettre', params: { char: char.letter }}"
+        :to="{name: 'Lettre', params: { char: char.letter }}"
         v-shuffle="2"
         class="d-block m-3"
       >
-        <CharCard v-bind="char"  />
+        <CharCard v-bind="char" is-in-grid  />
       </router-link>
+      <b-modal
+        :id="'bv-modal-letter-' + char.letter"
+        v-model="char.current"
+        size="lg"
+        hide-footer
+      >
+        <template v-slot:modal-title>
+          La lettre {{char.letter}}
+        </template>
+        <CharCard v-bind="char"  />
+      </b-modal>
     </b-col>
-  </transition-group>
+  </div>
 </template>
 
 <script>
@@ -27,6 +38,9 @@ export default {
   computed: {
     charlist() {
       return this.$store.getters.selectedSet;
+    },
+    isRouteChar() {
+      return this.router.params.char;
     },
   },
   directives: {

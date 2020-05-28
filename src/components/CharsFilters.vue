@@ -3,10 +3,10 @@
     <div class="px-3 mt-4 mb-1 border-bottom">
       <b-form-group>
         <b-form-checkbox-group
-          id="checkbox-group-1"
+          id="checkbox-letters"
           v-model="checkboxModel"
           v-bind:options="checkboxOptions"
-          name="flavour-1"
+          name="checkbox-letters"
         ></b-form-checkbox-group>
       </b-form-group>
     </div>
@@ -51,19 +51,18 @@ export default {
         text: _char.letter,
         value: _char.letter,
       }));
-      console.log('checkboxOptions', options);
+      // console.log('checkboxOptions', options);
       return options;
     },
     checkboxModel: {
       get() {
         const model = this.$store.getters.selectedSet.map((_char) => _char.letter);
-        console.log('get checkboxModel', model);
+        // console.log('get checkboxModel', model);
         return model;
       },
       set(sample) {
-        console.log('set checkboxModel', sample);
+        // console.log('set checkboxModel', sample);
         this.$store.commit('selectSample', sample);
-        // sampleUpdate(value);
       },
     },
     sampleHash() {
@@ -72,10 +71,9 @@ export default {
     },
   },
   methods: {
-
     sampleUpdate(event) {
       // Send a set of letters as sample to filter
-      console.log('sampleUpdate', event.target.value.split(''));
+      // console.log('sampleUpdate', event.target.value.split(''));
       this.$store.commit('selectSample', event.target.value.split(''));
     },
     toggleCharSelection(char) {

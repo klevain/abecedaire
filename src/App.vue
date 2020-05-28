@@ -7,7 +7,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/">Les Lettres</b-nav-item>
+          <b-nav-item to="/lettres">Les Lettres</b-nav-item>
           <b-nav-item to="/about">À propos</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
