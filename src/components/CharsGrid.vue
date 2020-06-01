@@ -18,8 +18,9 @@
         size="lg"
         hide-footer
       >
-        <template v-slot:modal-title>
-          La lettre “{{char.letter.toUpperCase()}}”
+        <template v-slot:modal-header>
+          <h5 class="modal-title">La lettre “{{char.letter.toUpperCase()}}”</h5>
+          <router-link to="/lettres" class="close" >×</router-link>
         </template>
         <CharCard v-bind="char"  />
       </b-modal>
@@ -56,7 +57,8 @@ export default {
   },
   methods: {
     unsetCurrentChar(charID) {
-      console.log('CharsGrid.unsetCurrentChar', charID);
+      console.log('DO NOTHING : CharsGrid.unsetCurrentChar', charID);
+      // this.$store.commit('unsetCurrentChar');
     },
   },
 };

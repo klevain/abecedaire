@@ -1,6 +1,6 @@
 <template>
   <div class="charsfilters">
-    <div class="px-3 mt-4 mb-1 border-bottom">
+    <div class="mt-4 mb-1 border-bottom">
       <b-form-group>
         <b-form-checkbox-group
           id="checkbox-letters"
@@ -10,7 +10,7 @@
         ></b-form-checkbox-group>
       </b-form-group>
     </div>
-    <div class="px-3 mt-4 mb-1">
+    <div class="mt-4 mb-1">
       <b-button
         name="reset"
         id="reset"
@@ -94,7 +94,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" >
- #checkbox-group-1 {
+  .charsfilters {
     .custom-control {
       padding-left: 0;
       margin-right: 0;

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import Store from '../store/index';
 
 Vue.use(VueRouter);
 
@@ -19,11 +20,21 @@ const routes = [
     path: '/lettres/',
     name: 'Lettres',
     component: () => import(/* webpackChunkName: "letters" */ '../views/Letters.vue'),
+    beforeEnter: (to, from, next) => {
+      console.log('router.beforeEnter.unsetCurrentChar');
+      Store.commit('unsetCurrentChar');
+      next();
+    },
   },
   {
     path: '/lettres/:char',
     name: 'Lettre',
     component: () => import(/* webpackChunkName: "letters" */ '../views/Letters.vue'),
+    beforeEnter: (to, from, next) => {
+      console.log('router.beforeEnter.setCurrentChar', to.params.char);
+      Store.commit('setCurrentChar', to.params.char);
+      next();
+    },
   },
 ];
 

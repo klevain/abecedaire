@@ -34,12 +34,5 @@ export default {
       this.$store.commit('setCurrentChar', currentChar);
     },
   },
-  mounted() {
-    this.commitCurrent(this.$route.params.char);
-  },
-  beforeRouteUpdate(to, from, next) {
-    this.commitCurrent(to.params.char);
-    next();
-  },
 };
 </script>

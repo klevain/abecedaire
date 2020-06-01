@@ -24,15 +24,23 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    setCurrentChar(state, char) {
+    setCurrentChar(state, charID) {
       const currentedCharsSet = state.charsSet.map((_char) => {
         const setchar = _char;
-        setchar.current = setchar.letter === char.letter;
+        setchar.current = setchar.letter === charID;
         return setchar;
       });
-      state.currentChar = char;
       state.charsSet = currentedCharsSet;
+      state.currentChar = currentedCharsSet.find((_char) => _char.current === true);
       console.log('store.setCurrentChar', state.currentChar.letter);
+    },
+    unsetCurrentChar(state) {
+      state.charsSet.forEach((_char) => {
+        const char = _char;
+        char.current = false;
+      });
+      state.currentChar = {};
+      console.log('store.unsetCurrentChar');
     },
     // sample est un tableau genre ['a','f','b'] contenant au moins une lettre
     selectSample(state, sample) {
