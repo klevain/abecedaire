@@ -13,15 +13,15 @@
       </router-link>
       <b-modal
         :id="'bv-modal-letter-' + char.letter"
-        v-on:hidden="unsetCurrentChar(char.letter)"
+        v-on:hidden="onHidden(char.letter)"
         v-model="char.current"
         size="lg"
         hide-footer
       >
-        <template v-slot:modal-header>
+        <!-- <template v-slot:modal-header>
           <h5 class="modal-title">La lettre “{{char.letter.toUpperCase()}}”</h5>
           <router-link to="/lettres" class="close" >×</router-link>
-        </template>
+        </template> -->
         <CharCard v-bind="char"  />
       </b-modal>
     </b-col>
@@ -56,9 +56,9 @@ export default {
     },
   },
   methods: {
-    unsetCurrentChar(charID) {
-      console.log('DO NOTHING : CharsGrid.unsetCurrentChar', charID);
-      // this.$store.commit('unsetCurrentChar');
+    onHidden(charID) {
+      console.log('CharsGrid.onHidden', charID);
+      this.$router.push({ name: 'Lettres' });
     },
   },
 };
