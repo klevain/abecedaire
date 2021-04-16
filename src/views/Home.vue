@@ -1,7 +1,5 @@
 <template>
-  <b-container
-    class="home"
-  >
+  <b-container>
     <b-row>
       <b-col><h2>Homepage</h2></b-col>
     </b-row>

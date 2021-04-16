@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar
+      toggleable="lg"
+      type="light"
+      variant="light"
+      sticky
+      class="border-bottom"
+    >
       <b-navbar-brand to="/">L'Abécédaire</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -22,7 +28,15 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" >
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+$font-family-sans-serif: 'Nunito', sans-serif;
+
+// Then import Bootstrap an BootstrapVue SCSS files (order is important)
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
 .router-fade-enter-active, .router-fade-leave-active {
   transition: opacity .5s;
 }

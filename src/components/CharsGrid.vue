@@ -1,41 +1,52 @@
 <template>
-  <div class="row row-cols-3">
+  <b-row
+  no-gutters
+  >
     <b-col
-        v-for="char in charlist"
-        :key="char.letter"
+      v-for="char in charlist"
+      :key="char.letter"
+      cols="3"
+      sm="3"
+      md="2"
+      class="border"
     >
-      <router-link
+      <b-link
         :to="{name: 'Lettre', params: { char: char.letter }}"
-        v-shuffle="2"
-        class="d-block m-3"
+        class="d-block text-center fs-2"
       >
-        <CharCard v-bind="char" is-in-grid  />
-      </router-link>
+        <h5 class="display-1 text-uppercase font-weight-bold">
+          {{ char.letter }}
+        </h5>
+        <b-icon-plus
+          variant="secondary"
+          class="border border-secondary rounded-circle h3"
+        ></b-icon-plus>
+      </b-link>
+
       <b-modal
         :id="'bv-modal-letter-' + char.letter"
         v-on:hidden="onHidden(char.letter)"
         v-model="char.current"
+        :title="'La lettre “' + char.letter.toUpperCase() + '”'"
         size="lg"
         hide-footer
+        centered
       >
-        <!-- <template v-slot:modal-header>
-          <h5 class="modal-title">La lettre “{{char.letter.toUpperCase()}}”</h5>
-          <router-link to="/lettres" class="close" >×</router-link>
-        </template> -->
         <CharCard v-bind="char"  />
       </b-modal>
     </b-col>
-  </div>
+  </b-row>
 </template>
 
 <script>
 import CharCard from '@/components/CharCard.vue';
-// import charsSetJson from '@/assets/chars-set.json';
+import { BIconPlus } from 'bootstrap-vue';
 
 export default {
   name: 'CharGrid',
   components: {
     CharCard,
+    BIconPlus,
   },
   computed: {
     charlist() {
@@ -43,16 +54,6 @@ export default {
     },
     isRouteChar() {
       return this.router.params.char;
-    },
-  },
-  directives: {
-    shuffle: {
-      bind(el) {
-        const randrot = (Math.random() >= 0.5) ? -1 : 1;
-        const randamp = 1 + Math.random() * 2;
-        const element = el;
-        element.style.transform = `rotate(${randrot * randamp}deg)`;
-      },
     },
   },
   methods: {
@@ -65,7 +66,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.flip-list-move {
-  transition: transform 1s;
+a:hover {
+  text-decoration: none;
 }
 </style>

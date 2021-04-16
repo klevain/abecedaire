@@ -1,27 +1,50 @@
 <template>
-<div>
-  <CharTimeline
-    :letter="letter"
-    :paths="majPaths"
-    :isMaj="true"
-    ref="majTimeline"
-  />
-  <CharTimeline
-    :letter="letter"
-    :paths="minPaths"
-    :isMaj="false"
-    ref="minTimeline"
-  />
-</div>
+  <b-container
+    fluid
+  >
+  <b-col>
+    <h1 class="my-3">La lettre “{{char.letter}}”</h1>
+  </b-col>
+  <b-col>
+    <b-card no-body class="mt-3" title="Card Title">
+      <b-tabs align="center" card>
+        <b-tab title="Majuscle" active>
+          <CharTimeline
+            :letter="char.letter"
+            :paths="char.majPaths"
+            :isMaj="true"
+            ref="majTimeline"
+          />
+        </b-tab>
+        <b-tab title="Minuscule">
+          <CharTimeline
+            :letter="char.letter"
+            :paths="char.minPaths"
+            :isMaj="false"
+            ref="minTimeline"
+          />
+        </b-tab>
+      </b-tabs>
+    </b-card>
+  </b-col>
+  <b-col>
+  </b-col>
+  </b-container>
 </template>
 
 <script>
 import CharTimeline from '@/components/CharTimeline.vue';
 
 export default {
-  name: 'CharCard',
+  name: 'Letter',
   components: {
     CharTimeline,
+  },
+  computed: {
+    char() {
+      console.log(this.$store.getters.currentChar);
+      return this.$store.getters.currentChar;
+    },
   },
   props: {
     letter: String,
