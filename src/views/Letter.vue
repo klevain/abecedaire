@@ -8,7 +8,22 @@
   <b-col>
     <b-card no-body class="mt-3" title="Card Title">
       <b-tabs align="center" card>
-        <b-tab title="Majuscle" active>
+        <b-tab
+          title="Majuscule"
+          v-if="char.maj"
+          active
+          no-body
+        >
+          <NewTimeline
+            :letter="char.letter"
+            :paths="char.maj.paths"
+            :helpers="char.maj.helpers"
+          />
+        </b-tab>
+        <b-tab
+          v-if="!char.maj"
+          active
+        >
           <CharTimeline
             :letter="char.letter"
             :paths="char.majPaths"
@@ -16,7 +31,21 @@
             ref="majTimeline"
           />
         </b-tab>
-        <b-tab title="Minuscule">
+        <b-tab
+          title="Minuscule"
+          v-if="char.min"
+          no-body
+        >
+          <NewTimeline
+            :letter="char.letter"
+            :paths="char.min.paths"
+            :helpers="char.min.helpers"
+          />
+        </b-tab>
+        <b-tab
+          title="Minuscule"
+          v-if="!char.min"
+        >
           <CharTimeline
             :letter="char.letter"
             :paths="char.minPaths"
@@ -34,11 +63,14 @@
 
 <script>
 import CharTimeline from '@/components/CharTimeline.vue';
+import NewTimeline from '@/components/NewTimeline.vue';
 
 export default {
   name: 'Letter',
   components: {
     CharTimeline,
+    NewTimeline,
+
   },
   computed: {
     char() {

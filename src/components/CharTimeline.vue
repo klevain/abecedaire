@@ -92,7 +92,7 @@
 <script>
 
 export default {
-  name: 'CharCard',
+  name: 'CharTimeline',
   data() {
     return {
       timeline: {},
@@ -113,7 +113,7 @@ export default {
         autoplay: false,
         easing: 'linear',
         update: () => {
-          console.log(this.timeline.progress);
+          // console.log(this.timeline.progress);
           this.cursor = (this.timeline.progress * 1024) / 100;
         },
         complete: () => {
@@ -137,8 +137,8 @@ export default {
       this.timeline.restart();
     },
     playTL() {
-      console.log('playTL');
-      console.log('this.timeline.progress', this.timeline.progress);
+      // console.log('playTL');
+      // console.log('this.timeline.progress', this.timeline.progress);
       this.hasEnded = false;
       this.isPlaying = true;
       this.timeline.play();
@@ -146,7 +146,7 @@ export default {
     pauseTL() {
       this.isPlaying = false;
       this.timeline.pause();
-      console.log('pauseTL');
+      // console.log('pauseTL');
     },
     toggleTL() {
       if (!this.isPlaying) {
