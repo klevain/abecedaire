@@ -1,18 +1,18 @@
 version: "3.3"
 
 services: 
-  s1_wb:
+  webapp:
     build: 
       context: .
       dockerfile: dockerfile.dev
       args:
-        - WEB_HTTP_PORT=3000
-    image: klevain/abecedaire:test-tag
+        - WEB_HTTP_PORT=8080
+    image: klevain/abecedaire
     ports:
-      - "3000:8080"
+      - "8080:8080"
       - "8000:8000"  # only needed if using vue-cli UI
     volumes:
-      - "~/Sites/abecedaire:/usr/app/abecedaire"
+      - ".:/usr/app/abecedaire"
     stdin_open: true
     tty: true
     deploy:
@@ -31,4 +31,3 @@ services:
       # one way for hot reloading ... see above for details 
       - CHOKIDAR_USEPOLLING=true
       - CHOKIDAR_INTERVAL=100
-      - YOUR_APP_WEB_HTTP_PORT=8080

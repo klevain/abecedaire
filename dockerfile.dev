@@ -1,24 +1,23 @@
 FROM node:12
 
 # not mandatory if you EXPORT a fixed port. See below.
-ARG WEB_HTTP_PORT=3000
+ARG WEB_HTTP_PORT=8080
 
 RUN apt-get -y update \
 	&& apt-get install -y git
 
 RUN npm install -g @vue/cli --verbose
-RUN npm install -g cli-real-favicon
-
-WORKDIR /usr/app/abecedaire
+RUN npm install -g cli-real-favicon --verbose
 
 RUN apt-get autoremove -y \
     && apt-get autoclean -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-# Or just use EXPORT 8080
+WORKDIR /usr/app/abecedaire
+
 EXPOSE ${WEB_HTTP_PORT}
-# If yout want use vue-cli UI you need to also EXPORT 8000 
+# Expose 8000 for vue-cli UI
 EXPOSE 8000
 
 USER node
