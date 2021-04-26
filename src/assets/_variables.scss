@@ -1,0 +1,52 @@
+// Solarize color scheme
+// https://ethanschoonover.com/solarized/
+$solarize-base03:    #002b36;
+$solarize-base02:    #073642;
+$solarize-base01:    #586e75;
+$solarize-base00:    #657b83;
+$solarize-base0:     #839496;
+$solarize-base1:     #93a1a1;
+$solarize-base2:     #eee8d5;
+$solarize-base3:     #fdf6e3;
+$solarize-yellow:    #b58900;
+$solarize-orange:    #cb4b16;
+$solarize-red:       #dc322f;
+$solarize-magenta:   #d33682;
+$solarize-violet:    #6c71c4;
+$solarize-blue:      #268bd2;
+$solarize-cyan:      #2aa198;
+$solarize-green:     #859900;
+
+// Bootstrap _variables.scss override
+
+$white:     $solarize-base3;
+$gray-100:  $solarize-base2;
+$gray-200:  $solarize-base1;
+$gray-300:  $solarize-base0;
+// $gray-400: #ced4da !default;
+// $gray-500: #adb5bd !default;
+// $gray-600: #6c757d !default;
+$gray-700:  $solarize-base00;
+$gray-800:  $solarize-base01;
+$gray-900:  $solarize-base02;
+$black:     $solarize-base03;
+
+$blue:    $solarize-blue;
+// $indigo:  #6610f2 !default;
+$purple:  $solarize-violet;
+$pink:    $solarize-magenta;
+$red:     $solarize-red;
+$orange:  $solarize-orange;
+$yellow:  $solarize-yellow;
+$green:   $solarize-green;
+// $teal:    #20c997 !default;
+$cyan:    $solarize-cyan;
+
+// $primary:       $blue !default;
+// $secondary:     $gray-600 !default;
+// $success:       $green !default;
+// $info:          $cyan !default;
+// $warning:       $yellow !default;
+// $danger:        $red !default;
+// $light:         $gray-100 !default;
+// $dark:          $gray-800 !default;

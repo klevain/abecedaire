@@ -1,28 +1,39 @@
 <template>
   <b-container
-    fluid
+    fluid="lg"
   >
-  <b-col>
-    <h1 class="my-3">La lettre “{{char.letter}}”</h1>
-  </b-col>
-  <b-col>
-    <b-card no-body class="mt-3" title="Card Title">
-      <b-tabs align="center" card>
-        <b-tab
-          title="Majuscule"
-          v-if="char.maj"
-          active
+    <b-row>
+      <b-col>
+        <h1 class="my-3">La lettre “{{char.letter}}”</h1>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col
+        v-if="char.maj"
+        cols="12"
+        md="6"
+      >
+        <b-card
           no-body
+          class="mt-3"
+          title="Majuscule"
         >
           <NewTimeline
             :letter="char.letter"
             :paths="char.maj.paths"
             :helpers="char.maj.helpers"
           />
-        </b-tab>
-        <b-tab
-          v-if="!char.maj"
-          active
+        </b-card>
+      </b-col>
+      <b-col
+        v-if="!char.maj"
+        cols="12"
+        md="6"
+      >
+        <b-card
+          no-body
+          class="mt-3"
+          title="Majuscule"
         >
           <CharTimeline
             :letter="char.letter"
@@ -30,21 +41,34 @@
             :isMaj="true"
             ref="majTimeline"
           />
-        </b-tab>
-        <b-tab
-          title="Minuscule"
-          v-if="char.min"
+        </b-card>
+      </b-col>
+      <b-col
+        v-if="char.min"
+        cols="12"
+        md="6"
+      >
+        <b-card
           no-body
+          class="mt-3"
+          title="Minuscule"
         >
           <NewTimeline
             :letter="char.letter"
             :paths="char.min.paths"
             :helpers="char.min.helpers"
           />
-        </b-tab>
-        <b-tab
+        </b-card>
+      </b-col>
+      <b-col
+        v-if="!char.min"
+        cols="12"
+        md="6"
+      >
+        <b-card
+          no-body
+          class="mt-3"
           title="Minuscule"
-          v-if="!char.min"
         >
           <CharTimeline
             :letter="char.letter"
@@ -52,12 +76,9 @@
             :isMaj="false"
             ref="minTimeline"
           />
-        </b-tab>
-      </b-tabs>
-    </b-card>
-  </b-col>
-  <b-col>
-  </b-col>
+        </b-card>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 

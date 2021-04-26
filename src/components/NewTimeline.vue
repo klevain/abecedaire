@@ -3,7 +3,7 @@
     <svg
         class="w-100 h-auto card-img-top"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 64 56"
+        viewBox="0 0 64 64"
     >
       <defs>
         <symbol id="tip" data-name="tip" viewBox="-2 -2 4 4" refX="0" refY="0">
@@ -22,59 +22,54 @@
         </symbol>
       </defs>
       <use width="64" height="56" xlink:href="#seyes" v-show="showGrid"/>
-      <g class="charanim">
-        <!-- Paths from letter "{{ letter }}" -->
-        <g class="model" v-show="showTrack">
-          <template v-for="(path, index) in paths">
-            <path
-              v-if="path.isPressed"
-              :key="index"
-              :d="path.value"
-              class="guide"
-            />
-          </template>
-        </g>
-        <g class="helpers" v-show="showHelpers">
-          <g
-            v-for="(helper, index) in helpers"
-            :key="index"
-            class="helper"
-          >
-            <path
-              v-for="(path, jndex) in helper"
-              :key="jndex"
-              :d="path"
-            />
-          </g>
-        </g>
-        <g class="paths">
+      <g class="helpers" v-show="showHelpers">
+        <g
+          v-for="(helper, index) in helpers"
+          :key="index"
+          class="helper"
+        >
           <path
-            ref="path"
-            v-for="(path, index) in paths"
-            :key="index"
-            :d="path.value"
-            :class="{pressed: path.isPressed, handsup: !path.isPressed }"
-            class="path"
+            v-for="(path, jndex) in helper"
+            :key="jndex"
+            :d="path"
           />
         </g>
-        <rect
-          v-on:wheel.prevent="dispatchWheel($event)"
-          v-on:click="dispatchClick($event)"
-          class="charanim_wheelarea"
-          x="0"
-          y="0"
-          width="64"
-          height="56"
-        ></rect>
       </g>
+      <g class="tracks" v-show="showTrack">
+        <template v-for="(path, index) in paths">
+          <path
+            v-if="path.isPressed"
+            :key="index"
+            :d="path.value"
+            class="track"
+          />
+        </template>
+      </g>
+      <g class="paths">
+        <path
+          ref="path"
+          v-for="(path, index) in paths"
+          :key="index"
+          :d="path.value"
+          :class="{pressed: path.isPressed, handsup: !path.isPressed }"
+          class="path"
+        />
+      </g>
+      <use ref="tip" x="-2" y="-2" width="4" height="4" xlink:href="#tip"/>
+      <rect
+        v-on:wheel.prevent="dispatchWheel($event)"
+        v-on:click="dispatchClick($event)"
+        class="wheelarea"
+        x="0"
+        y="0"
+        width="64"
+        height="56"
+      ></rect>
       <!-- eslint-disable -->
       <!-- just to remember -->
       <!-- eslint-enable -->
-      <use ref="tip" x="-2" y="-2" width="4" height="4" xlink:href="#tip"/>
     </svg>
-    <div
-      class="timeline-toolbar p-3 d-flex flex-column-reverse bd-highlight"
-    >
+    <div class="timeline-toolbar p-3 d-flex flex-column-reverse bd-highlight">
       <b-input-group>
         <b-input-group-prepend>
           <b-button variant="primary" v-on:click="toggleTL()">
@@ -92,42 +87,65 @@
           min="0"
           max="1024"
           v-on:input="dispatchRange(cursor)"
+          v-on:click="playTL"
         ></b-form-input>
+        <b-input-group-append>
+          <b-button
+            variant="primary"
+            v-on:click="toggleOptions"
+          >
+            <b-icon-gear></b-icon-gear>
+          </b-button>
+        </b-input-group-append>
       </b-input-group>
-      <div class="mb-2 text-right">
+      <div class="mb-2 text-right" v-show="showOptions">
         <b-form-checkbox
           v-model="showGrid"
           name="check-button"
           button
           button-variant="primary"
         >
-          Grille
-          <b-icon-eye v-show="!showGrid"></b-icon-eye>
-          <b-icon-eye-slash v-show="showGrid"></b-icon-eye-slash>
+          <b-iconstack aria-label="Grille" v-show="showGrid">
+            <b-icon stacked icon="bookshelf"></b-icon>
+            <b-icon stacked icon="slash" scale="2"></b-icon>
+          </b-iconstack>
+          <b-icon icon="bookshelf" aria-label="Tracé" v-show="!showGrid"></b-icon>
+          <!-- <b-icon-eye v-show="!showGrid"></b-icon-eye>
+          <b-icon-eye-slash v-show="showGrid"></b-icon-eye-slash> -->
         </b-form-checkbox>
       </div>
-      <div class="mb-2 text-right">
+      <div class="mb-2 text-right" v-show="showOptions">
         <b-form-checkbox
           v-model="showHelpers"
+          :disabled="helpers.length == 0"
           name="check-button"
           button
           button-variant="primary"
         >
-          Flechage
-          <b-icon-eye v-show="!showHelpers"></b-icon-eye>
-          <b-icon-eye-slash v-show="showHelpers"></b-icon-eye-slash>
+          <b-iconstack aria-label="Flechage" v-show="showHelpers">
+            <b-icon stacked icon="arrow-left-right" flip-h></b-icon>
+            <b-icon stacked icon="slash" scale="2"></b-icon>
+          </b-iconstack>
+          <b-icon
+            icon="arrow-left-right"
+            aria-label="Flechage"
+            flip-h
+            v-show="!showHelpers"
+          ></b-icon>
         </b-form-checkbox>
       </div>
-      <div class="mb-2 text-right">
+      <div class="mb-2 text-right" v-show="showOptions">
         <b-form-checkbox
           v-model="showTrack"
           name="check-button"
           button
           button-variant="primary"
         >
-          Tracé
-          <b-icon-eye v-show="!showTrack"></b-icon-eye>
-          <b-icon-eye-slash v-show="showTrack"></b-icon-eye-slash>
+          <b-iconstack aria-label="Tracé" v-show="showTrack">
+            <b-icon stacked icon="three-dots"></b-icon>
+            <b-icon stacked icon="slash" scale="2"></b-icon>
+          </b-iconstack>
+          <b-icon icon="three-dots" aria-label="Tracé" v-show="!showTrack"></b-icon>
         </b-form-checkbox>
       </div>
     </div>
@@ -146,6 +164,7 @@ export default {
       showGrid: true,
       showHelpers: false,
       showTrack: false,
+      showOptions: false,
       isPlaying: false,
       hasEnded: false,
       holdTime: 200, // ms between paths.
@@ -157,11 +176,15 @@ export default {
     helpers: Array,
   },
   methods: {
+    toggleOptions() {
+      this.showOptions = !this.showOptions;
+    },
     createTimeline() {
       this.timeline = this.$anime.timeline({
         autoplay: false,
         easing: 'linear',
         update: () => {
+          this.hasEnded = false;
           this.cursor = (this.timeline.progress * 1024) / 100;
         },
         complete: () => {
@@ -262,6 +285,7 @@ export default {
       }
     },
     dispatchRange(range) {
+      this.pauseTL();
       this.timeline.seek((range / 1024) * this.timeline.duration);
     },
     dispatchWheel(event) {
@@ -277,7 +301,8 @@ export default {
     this.createTimeline();
     this.$nextTick(() => {
       this.addPathsToTL();
-      this.timeline.seek(this.timeline.duration);
+      this.playTL();
+      // this.timeline.seek(this.timeline.duration);
     });
   },
 };
@@ -285,6 +310,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+@import 'src/assets/_variables.scss';
+
   .timeline{
     position: relative;
   }
@@ -293,16 +320,17 @@ export default {
   }
   .tip{
     .cross{
-      fill:red;
+      fill: $red;
     }
     .border{
-      fill:rgba(255,0,0,.5);
+      fill: $red;
+      opacity: 0.5;
     }
   }
   .seyes-line{
     fill:none;
     fill-opacity: 0;
-    stroke:#6C00BD;
+    stroke:$gray-200;
     stroke-linecap:round;
     stroke-linejoin:round;
     stroke-width:0.25px;
@@ -310,7 +338,7 @@ export default {
   .seyes-interline{
     fill:none;
     fill-opacity: 0;
-    stroke:#8FF4FF;
+    stroke:$gray-200;
     stroke-linecap:round;
     stroke-linejoin:round;
     stroke-width:0.125px;
@@ -318,24 +346,24 @@ export default {
   .helper{
     fill:none;
     fill-opacity: 0;
-    stroke:#ccc;
+    stroke:$gray-200;
     stroke-linecap:round;
     stroke-linejoin:round;
     stroke-width:0.25px;
   }
-  .guide{
+  .track{
     fill:none;
     fill-opacity: 0;
-    stroke:#eeeeee;
+    stroke:$gray-200;
     stroke-linecap:round;
     stroke-linejoin:round;
     stroke-width:0.25px;
-    stroke-dasharray: 1;
+    stroke-dasharray: 0.25 0.5;
   }
   .pressed{
     fill:none;
     fill-opacity: 0;
-    stroke:#000000;
+    stroke:$gray-900;
     stroke-linecap:round;
     stroke-linejoin:round;
     stroke-width:1px;
@@ -345,5 +373,8 @@ export default {
     fill-opacity: 0;
     stroke:none;
     stroke-opacity: 0;
+  }
+  .wheelarea {
+    fill-opacity:0;
   }
 </style>

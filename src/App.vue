@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <b-navbar
-      toggleable="lg"
-      type="light"
-      variant="light"
+      toggleable="md"
+      type="dark"
+      variant="primary"
       sticky
       class="border-bottom"
     >
@@ -13,7 +13,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/lettres">Les Lettres</b-nav-item>
+          <b-nav-item to="/">Les Lettres</b-nav-item>
           <b-nav-item to="/about">À propos</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
@@ -32,6 +32,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 $font-family-sans-serif: 'Nunito', sans-serif;
+
+@import 'src/assets/_variables.scss';
 
 // Then import Bootstrap an BootstrapVue SCSS files (order is important)
 @import 'node_modules/bootstrap/scss/bootstrap.scss';

@@ -17,15 +17,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
-    path: '/lettres/',
-    name: 'Lettres',
-    component: () => import(/* webpackChunkName: "letters" */ '../views/Letters.vue'),
-    beforeEnter: (to, from, next) => {
-      Store.commit('unsetCurrentChar');
-      next();
-    },
-  },
-  {
     path: '/lettres/:char',
     name: 'Lettre',
     component: () => import(/* webpackChunkName: "letters" */ '../views/Letter.vue'),

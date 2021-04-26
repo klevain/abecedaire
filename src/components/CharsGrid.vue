@@ -22,32 +22,13 @@
           class="border border-secondary rounded-circle h3"
         ></b-icon-plus>
       </b-link>
-
-      <b-modal
-        :id="'bv-modal-letter-' + char.letter"
-        v-on:hidden="onHidden(char.letter)"
-        v-model="char.current"
-        :title="'La lettre “' + char.letter.toUpperCase() + '”'"
-        size="lg"
-        hide-footer
-        centered
-      >
-        <CharCard v-bind="char"  />
-      </b-modal>
     </b-col>
   </b-row>
 </template>
 
 <script>
-import CharCard from '@/components/CharCard.vue';
-import { BIconPlus } from 'bootstrap-vue';
-
 export default {
   name: 'CharGrid',
-  components: {
-    CharCard,
-    BIconPlus,
-  },
   computed: {
     charlist() {
       return this.$store.getters.selectedSet;
