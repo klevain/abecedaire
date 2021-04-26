@@ -1,9 +1,6 @@
 <template>
-  <b-container
-    fluid
-    class="home"
-  >
-    <b-row>
+  <div class="home" >
+    <b-row no-gutters>
       <nav class="col-md-3 col-lg-2 d-md-block bd-sidebar border-right d-none d-md-block">
         <div class="pt-3">
           <CharsFilters />
@@ -13,7 +10,7 @@
         <CharsGrid/>
       </main>
     </b-row>
-  </b-container>
+  </div>
 </template>
 
 <script>

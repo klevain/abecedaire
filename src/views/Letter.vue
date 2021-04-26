@@ -1,6 +1,6 @@
 <template>
   <b-container
-    fluid="lg"
+    fluid="xl"
   >
     <b-row>
       <b-col>
