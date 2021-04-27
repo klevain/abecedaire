@@ -1,9 +1,6 @@
 <template>
   <div class="timeline">
-    <svg
-      height="0"
-      width="0"
-    >
+    <svg class="d-none">
       <defs>
         <symbol id="tip" data-name="tip" viewBox="-2 -2 4 4" refX="0" refY="0">
           <g class="tip">

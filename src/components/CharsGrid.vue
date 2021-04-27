@@ -1,9 +1,6 @@
 <template>
   <div>
-    <svg
-      height="0"
-      width="0"
-    >
+    <svg class="d-none">
       <defs>
         <symbol id="seyes" data-name="seyes" viewBox="0 0 64 88">
           <line class="seyes-interline" x1="0" x2="64" y1="08" y2="08"/>

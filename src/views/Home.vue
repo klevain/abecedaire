@@ -1,7 +1,9 @@
 <template>
-  <div class="home" >
-    <b-row no-gutters>
-      <nav class="col-md-3 col-lg-2 d-md-block bd-sidebar border-right d-none d-md-block">
+  <b-container fluid class="home" >
+    <b-row
+      style="min-height: calc(100vh - 57px);"
+    >
+      <nav class="col-md-3 col-lg-2 d-md-block d-none d-md-block bg-light">
         <div class="pt-3">
           <CharsFilters />
         </div>
@@ -10,7 +12,7 @@
         <CharsGrid/>
       </main>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>

@@ -2,7 +2,6 @@
   <div class="timeline">
     <svg
         class="w-100 h-auto card-img-top"
-        xmlns="http://www.w3.org/2000/svg"
         viewBox="72 4 48 48"
     >
         <g class="charcard_baselines">
@@ -60,9 +59,6 @@
               height="32"
             ></rect>
           </g>
-          <!-- eslint-disable -->
-          <!-- just to remember -->
-          <!-- eslint-enable -->
         </g>
     </svg>
     <div class="input-group">
