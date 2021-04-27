@@ -11,31 +11,19 @@
       <b-col
         v-if="char.maj"
       >
-        <b-card
-          no-body
-          class="mt-3"
-          title="Majuscule"
-        >
-          <NewTimeline
-            :char="char"
-          />
-        </b-card>
+        <NewTimeline
+          :char="char"
+        />
       </b-col>
       <b-col
         v-if="!char.maj"
       >
-        <b-card
-          no-body
-          class="mt-3"
-          title="Majuscule"
-        >
-          <CharTimeline
-            :letter="char.letter"
-            :paths="char.majPaths"
-            :isMaj="true"
-            ref="majTimeline"
-          />
-        </b-card>
+        <CharTimeline
+          :letter="char.letter"
+          :paths="char.majPaths"
+          :isMaj="true"
+          ref="majTimeline"
+        />
       </b-col>
     </b-row>
   </b-container>

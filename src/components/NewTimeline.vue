@@ -21,99 +21,104 @@
         </symbol>
       </defs>
     </svg>
-    <svg
-        class="w-100 h-auto card-img-top"
-        viewBox="0 0 64 64"
+    <b-card
+      no-body
+      class="mt-3"
     >
-      <use width="64" height="56" xlink:href="#seyes" v-show="showGrid"/>
-      <g ref="maj" class="maj" v-show="!showMin">
-        <g class="helpers" v-show="showHelpers">
-          <g
-            v-for="(helper, index) in char.maj.helpers"
-            :key="index"
-            class="helper"
-          >
-            <path
-              v-for="(path, jndex) in helper"
-              :key="jndex"
-              :d="path"
-            />
+      <svg
+          class="w-100 h-auto card-img-top"
+          viewBox="0 0 64 56"
+      >
+        <use width="64" height="56" xlink:href="#seyes" v-show="showGrid"/>
+        <g ref="maj" class="maj" v-show="!showMin">
+          <g class="helpers" v-show="showHelpers">
+            <g
+              v-for="(helper, index) in char.maj.helpers"
+              :key="index"
+              class="helper"
+            >
+              <path
+                v-for="(path, jndex) in helper"
+                :key="jndex"
+                :d="path"
+              />
+            </g>
           </g>
-        </g>
-        <g class="tracks" v-show="showTrack">
-          <template v-for="(path, index) in char.maj.paths">
+          <g class="tracks" v-show="showTrack">
+            <template v-for="(path, index) in char.maj.paths">
+              <path
+                v-if="path.isPressed"
+                :key="index"
+                :d="path.value"
+                class="track"
+              />
+            </template>
+          </g>
+          <g class="paths">
             <path
-              v-if="path.isPressed"
+              ref="majpath"
+              v-for="(path, index) in char.maj.paths"
               :key="index"
               :d="path.value"
-              class="track"
-            />
-          </template>
-        </g>
-        <g class="paths">
-          <path
-            ref="majpath"
-            v-for="(path, index) in char.maj.paths"
-            :key="index"
-            :d="path.value"
-            :class="{pressed: path.isPressed, handsup: !path.isPressed }"
-            class="path"
-          />
-        </g>
-        <use ref="majtip" x="-2" y="-2" width="4" height="4" xlink:href="#tip"/>
-      </g>
-      <g ref="min" class="min" v-show="showMin">
-        <g class="helpers" v-show="showHelpers">
-          <g
-            v-for="(helper, index) in char.min.helpers"
-            :key="index"
-            class="helper"
-          >
-            <path
-              v-for="(path, jndex) in helper"
-              :key="jndex"
-              :d="path"
+              :class="{pressed: path.isPressed, handsup: !path.isPressed }"
+              class="path"
             />
           </g>
+          <use ref="majtip" x="-2" y="-2" width="4" height="4" xlink:href="#tip"/>
         </g>
-        <g class="tracks" v-show="showTrack">
-          <template v-for="(path, index) in char.min.paths">
+        <g ref="min" class="min" v-show="showMin">
+          <g class="helpers" v-show="showHelpers">
+            <g
+              v-for="(helper, index) in char.min.helpers"
+              :key="index"
+              class="helper"
+            >
+              <path
+                v-for="(path, jndex) in helper"
+                :key="jndex"
+                :d="path"
+              />
+            </g>
+          </g>
+          <g class="tracks" v-show="showTrack">
+            <template v-for="(path, index) in char.min.paths">
+              <path
+                v-if="path.isPressed"
+                :key="index"
+                :d="path.value"
+                class="track"
+              />
+            </template>
+          </g>
+          <g class="paths">
             <path
-              v-if="path.isPressed"
+              ref="minpath"
+              v-for="(path, index) in char.min.paths"
               :key="index"
               :d="path.value"
-              class="track"
+              :class="{pressed: path.isPressed, handsup: !path.isPressed }"
+              class="path"
             />
-          </template>
+          </g>
+          <use ref="mintip" x="-2" y="-2" width="4" height="4" xlink:href="#tip"/>
         </g>
-        <g class="paths">
-          <path
-            ref="minpath"
-            v-for="(path, index) in char.min.paths"
-            :key="index"
-            :d="path.value"
-            :class="{pressed: path.isPressed, handsup: !path.isPressed }"
-            class="path"
-          />
-        </g>
-        <use ref="mintip" x="-2" y="-2" width="4" height="4" xlink:href="#tip"/>
-      </g>
-      <rect
-        v-on:wheel.prevent="dispatchWheel($event)"
-        v-on:click="dispatchClick($event)"
-        class="wheelarea"
-        x="0"
-        y="0"
-        width="64"
-        height="56"
-      ></rect>
-      <!-- eslint-disable -->
-      <!-- just to remember -->
-      <!-- eslint-enable -->
-    </svg>
+        <rect
+          v-on:wheel.prevent="dispatchWheel($event)"
+          v-on:click="dispatchClick($event)"
+          class="wheelarea"
+          x="0"
+          y="0"
+          width="64"
+          height="56"
+        ></rect>
+        <!-- eslint-disable -->
+        <!-- just to remember -->
+        <!-- eslint-enable -->
+      </svg>
+    </b-card>
 
-    <div class="timeline-toolbar p-3">
-      <b-input-group>
+    <div class="py-3">
+      <b-input-group size="lg">
         <b-input-group-prepend>
           <b-button variant="primary" v-on:click="toggleTLs()">
             <span v-show="!hasEnded">
@@ -126,6 +131,7 @@
         <b-form-input
           id="range"
           v-model="cursor"
+          size="lg"
           type="range"
           min="0"
           max="1024"
@@ -141,6 +147,7 @@
           <b-form-checkbox
             v-model="showMin"
             name="check-button"
+            size="lg"
             button
             button-variant="primary"
             class="border-tweak-wrapper"
@@ -158,13 +165,13 @@
       hide-footer
       centered
     >
-      <b-form-checkbox v-model="showGrid" name="check-button" switch class="my-3">
+      <b-form-checkbox v-model="showGrid" name="check-button" switch size="lg" class="my-3">
         Afficher les lignes
       </b-form-checkbox>
-      <b-form-checkbox v-model="showHelpers" name="check-button" switch class="my-3">
+      <b-form-checkbox v-model="showHelpers" name="check-button" switch size="lg" class="my-3">
         Afficher les flèches d'aide
       </b-form-checkbox>
-      <b-form-checkbox v-model="showTrack" name="check-button" switch class="my-3">
+      <b-form-checkbox v-model="showTrack" name="check-button" switch size="lg" class="my-3">
         Afficher le tracé en pointillé
       </b-form-checkbox>
     </b-modal>
@@ -217,7 +224,7 @@ export default {
         },
         complete: () => {
           this.hasEnded = true;
-          this.pauseTLs();
+          this.isPlaying = false;
         },
       };
       this.majTL = this.$anime.timeline(tlOptions);
@@ -309,32 +316,37 @@ export default {
       }
     },
     restartTLs() {
+      // console.log('restartTLs');
       this.majTL.restart();
       this.minTL.restart();
     },
     playTLs() {
-      console.log('playTL');
+      // console.log('playTLs');
       this.hasEnded = false;
       this.isPlaying = true;
       this.majTL.play();
       this.minTL.play();
     },
     pauseTLs() {
-      console.log('pauseTL');
+      // console.log('pauseTLs');
       this.isPlaying = false;
       this.majTL.pause();
       this.minTL.pause();
     },
     toggleTLs() {
-      if (!this.isPlaying) {
-        this.playTLs();
-      } else {
+      // console.log('toggleTLs', this.isPlaying);
+      if (this.isPlaying) {
         this.pauseTLs();
+      } else {
+        this.playTLs();
       }
     },
     dispatchRange(range) {
+      // console.log('dispatchRange', range / 1024);
       const wasPlaying = this.isPlaying;
-      this.pauseTLs();
+      if (wasPlaying) {
+        this.pauseTLs();
+      }
       this.majTL.seek((range / 1024) * this.majTL.duration);
       this.minTL.seek((range / 1024) * this.minTL.duration);
       if (wasPlaying) {
@@ -342,39 +354,61 @@ export default {
       }
     },
     dispatchWheel(event) {
+      // console.log('dispatchWheel', event);
       const { deltaY } = event;
       const tempCursor = Math.min(Math.max(this.majTL.progress + (deltaY / 24), 0), 100) / 100;
       this.majTL.seek(tempCursor * this.majTL.duration);
       this.minTL.seek(tempCursor * this.minTL.duration);
     },
     dispatchClick() {
-      this.restartTLs();
+      // console.log('dispatchClick');
+      this.toggleTLs();
     },
+    dispatchKeyboard(event) {
+      // console.log('dispatchKeyboard', event);
+      const delta = 0.02;
+      const progress = this.minTL.progress / 100;
+      if (event.keyCode === 32) {
+        this.toggleTLs();
+      }
+      if (event.keyCode === 39) {
+        this.minTL.seek((progress + delta) * this.minTL.duration);
+        this.majTL.seek((progress + delta) * this.majTL.duration);
+      }
+      if (event.keyCode === 37) {
+        this.minTL.seek((progress - delta) * this.minTL.duration);
+        this.majTL.seek((progress - delta) * this.majTL.duration);
+      }
+    },
+  },
+  created() {
+    window.addEventListener('keydown', this.dispatchKeyboard);
+  },
+  destroyed() {
+    window.removeEventListener('keydown', this.dispatchKeyboard);
   },
   mounted() {
     this.createTLs();
+    this.populateTL(
+      this.$refs.majtip,
+      this.$refs.majpath,
+      this.char.maj.paths,
+      this.majTL,
+    );
+    this.populateTL(
+      this.$refs.mintip,
+      this.$refs.minpath,
+      this.char.min.paths,
+      this.minTL,
+    );
     this.$nextTick(() => {
-      this.populateTL(
-        this.$refs.majtip,
-        this.$refs.majpath,
-        this.char.maj.paths,
-        this.majTL,
-      );
-      this.populateTL(
-        this.$refs.mintip,
-        this.$refs.minpath,
-        this.char.min.paths,
-        this.minTL,
-      );
       this.equalizeTLs();
       this.playTLs();
-      // this.majTL.seek(this.majTL.duration);
     });
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import 'src/assets/_variables.scss';
 
@@ -384,9 +418,6 @@ export default {
 }
 .timeline{
   position: relative;
-}
-.timeline-toolbar{
-  position: absolute;bottom: 0;left: 0;right: 0;
 }
 .tip{
   .cross{
@@ -416,7 +447,7 @@ export default {
 .helper{
   fill:none;
   fill-opacity: 0;
-  stroke:$gray-200;
+  stroke:$blue;
   stroke-linecap:round;
   stroke-linejoin:round;
   stroke-width:0.25px;
@@ -424,11 +455,11 @@ export default {
 .track{
   fill:none;
   fill-opacity: 0;
-  stroke:$gray-200;
+  stroke:$gray-100;
   stroke-linecap:round;
   stroke-linejoin:round;
   stroke-width: 0.45px;
-  stroke-dasharray: 0.4px 0.8;
+  stroke-dasharray: 0.4px 1;
 }
 .pressed{
   fill:none;
