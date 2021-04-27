@@ -8,6 +8,12 @@ export default new Vuex.Store({
   state: {
     charsSet: charsSetJson,
     currentChar: {},
+    options: {
+      showGrid: true,
+      showHelpers: false,
+      showTrack: true,
+      showMin: false,
+    },
   },
   getters: {
     selectedSet(state) {
@@ -24,6 +30,10 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setOPtions(state, options) {
+      Object.assign(state.options, options);
+      console.log('store.setOPtions', state.options);
+    },
     setCurrentChar(state, charID) {
       const currentedCharsSet = state.charsSet.map((_char) => {
         const setchar = _char;
@@ -67,5 +77,6 @@ export default new Vuex.Store({
       });
       console.log('store.toggleCharsSet', forced);
     },
+
   },
 });

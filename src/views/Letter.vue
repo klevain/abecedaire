@@ -10,8 +10,6 @@
     <b-row>
       <b-col
         v-if="char.maj"
-        cols="12"
-        md="6"
       >
         <b-card
           no-body
@@ -19,16 +17,12 @@
           title="Majuscule"
         >
           <NewTimeline
-            :letter="char.letter"
-            :paths="char.maj.paths"
-            :helpers="char.maj.helpers"
+            :char="char"
           />
         </b-card>
       </b-col>
       <b-col
         v-if="!char.maj"
-        cols="12"
-        md="6"
       >
         <b-card
           no-body
@@ -40,41 +34,6 @@
             :paths="char.majPaths"
             :isMaj="true"
             ref="majTimeline"
-          />
-        </b-card>
-      </b-col>
-      <b-col
-        v-if="char.min"
-        cols="12"
-        md="6"
-      >
-        <b-card
-          no-body
-          class="mt-3"
-          title="Minuscule"
-        >
-          <NewTimeline
-            :letter="char.letter"
-            :paths="char.min.paths"
-            :helpers="char.min.helpers"
-          />
-        </b-card>
-      </b-col>
-      <b-col
-        v-if="!char.min"
-        cols="12"
-        md="6"
-      >
-        <b-card
-          no-body
-          class="mt-3"
-          title="Minuscule"
-        >
-          <CharTimeline
-            :letter="char.letter"
-            :paths="char.minPaths"
-            :isMaj="false"
-            ref="minTimeline"
           />
         </b-card>
       </b-col>
